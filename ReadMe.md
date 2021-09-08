@@ -1,4 +1,4 @@
- # demo-belly-data-contentful
+ # demo-restaurant-data-contentful
 
  A Netlify build plugin to fetch content from a Contentful space and save it as JSON files in the ready for an SSG to use to generate an example restaurant site.
 
@@ -11,15 +11,23 @@ This plugin is to be used as a local plugin and not added to the official Netlif
 
 ### Include in your project as git submodule
 
-```
-# add instructions
+```bash
+git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
 ```
 
 
-### Add the plugin to `netlify.toml`
+### Add the plugin to your project's `netlify.toml`
 
-```
-# add instructions
+```diff-toml
+
++ [[plugins]]
++   package = "./netlify/plugins/demo-restaurant-data-contentful"
++ 
++   [plugins.inputs]
++     # Directory for the generated JSON data files to reside in
++     dataDir = "data"
+
+
 ```
 
 
