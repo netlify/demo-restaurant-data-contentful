@@ -18,15 +18,14 @@ git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify
 
 ### Add the plugin to your project's `netlify.toml`
 
-```toml-diff
+```toml
 
-+ [[plugins]]
-+   package = "./netlify/plugins/demo-restaurant-data-contentful"
-+ 
-+   [plugins.inputs]
-+     # Directory for the generated JSON data files to reside in
-+     dataDir = "data"
+[[plugins]]
+  package = "./netlify/plugins/demo-restaurant-data-contentful"
 
+  [plugins.inputs]
+    # Directory for the generated JSON data files to reside in
+    dataDir = "data"
 
 ```
 
