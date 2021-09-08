@@ -18,7 +18,7 @@ git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify
 
 ### Add the plugin to your project's `netlify.toml`
 
-```diff-toml
+```toml-diff
 
 + [[plugins]]
 +   package = "./netlify/plugins/demo-restaurant-data-contentful"
