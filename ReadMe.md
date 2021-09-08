@@ -1,6 +1,8 @@
  # demo-belly-data-contentful
 
- A Netlify build plugin to fetch content from a Contentful space and save it as JSON files in the ready for an SSG to use to generate4e an example restaurant site.
+ A Netlify build plugin to fetch content from a Contentful space and save it as JSON files in the ready for an SSG to use to generate an example restaurant site.
+
+ Data will be delivered as per the schema defined here: https://github.com/netlify/dx-restuarant-sites-data
 
 
  ## Usage for Development and Deployment
