@@ -39,6 +39,23 @@ const fetchMenu = async () => {
   return menu;
 }
 
+const fetchPages = async () => {
+  const entries = await client.getEntries({
+    content_type: 'page'
+  });
+
+  let pages = [];
+  for (item in entries.items) {
+    let thisItem = entries.items[item];
+    pages.push({
+      "title": thisItem.fields.title,
+      "description": thisItem.fields.description,
+      "body": thisItem.fields.body
+    });
+  };
+  return pages;
+}
+
 // save the data to the specified file
 const saveData = async (data, path) => {
   await fs.writeFileSync(path, JSON.stringify(data));
@@ -52,6 +69,8 @@ module.exports = {
     try {
       const menu = await fetchMenu();
       await saveData(menu, `${inputs.dataDir}/menu.json`);
+      const pages = await fetchPages();
+      await saveData(pages, `${inputs.dataDir}/pages.json`);
 
     }
     catch(err) {
