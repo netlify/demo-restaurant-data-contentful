@@ -36,7 +36,7 @@ git submodule add https://github.com/netlify/demo-restaurant-data-contentful net
 
 ```
 
-If you've configured your SSG to use a specific folder to use for data, replace the value of `dataDir` with the name of the folder you're using. Otherwise, create a folder called `data` at the root of your project, so the JSON file can be copied inside it.
+If you've configured your SSG to use a specific folder to use for data, replace the value of the `dataDir` option with the name of the folder you're using. If it does not yet exist, this directory will be created automatically so the JSON file can be copied inside it.
 
 
 ### add the Contentful creds to your project as environment variable
