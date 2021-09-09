@@ -6,6 +6,7 @@ const client = require('contentful').createClient({
   accessToken: process.env.CONTENTFUL_CONTENT_API_TOKEN,
 });
 
+var dataDir;
 
 const fetchMenu = async () => {
   const entries = await client.getEntries({
@@ -40,7 +41,8 @@ const fetchMenu = async () => {
 }
 
 // save the data to the specified file
-const saveData = async (data, path) => {
+const saveData = async (data, file) => {
+  const path = `${dataDir}/${file}`;
   await fs.writeFileSync(path, JSON.stringify(data));
   console.log('Fetched and stashed:', chalk.green(`=> ${path}`));
 }
@@ -48,11 +50,17 @@ const saveData = async (data, path) => {
 
 module.exports = {
 
-  async onPreBuild({ inputs }) {
+  async onPreBuild({ inputs, utils }) {
+    
+    // ensure we have the specified directory for our data
+    dataDir = inputs.dataDir;
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+
     try {
       const menu = await fetchMenu();
-      await saveData(menu, `${inputs.dataDir}/menu.json`);
-
+      await saveData(menu, 'menu.json');
     }
     catch(err) {
       utils.build.failBuild(`Error fetching data: ${err}`);
