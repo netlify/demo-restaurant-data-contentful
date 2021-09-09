@@ -8,6 +8,7 @@ const client = require('contentful').createClient({
 
 var dataDir;
 
+// Construct the data object for the menu
 const fetchMenu = async () => {
   const entries = await client.getEntries({
     content_type: 'menuItem'
@@ -36,26 +37,27 @@ const fetchMenu = async () => {
       //   }
     });
   };
-
   return menu;
 }
 
+// Construct the data object for the site pages
 const fetchPages = async () => {
   const entries = await client.getEntries({
     content_type: 'page'
   });
 
-  let pages = [];
+  let pages = {};
   for (item in entries.items) {
     let thisItem = entries.items[item];
-    pages.push({
+    pages[thisItem.fields.title.toLowerCase()] = {
       "title": thisItem.fields.title,
       "description": thisItem.fields.description,
       "body": thisItem.fields.body
-    });
+    };
   };
   return pages;
 }
+
 
 // save the data to the specified file
 const saveData = async (data, file) => {
@@ -77,9 +79,9 @@ module.exports = {
 
     try {
       const menu = await fetchMenu();
-      await saveData(menu, `${inputs.dataDir}/menu.json`);
+      await saveData(menu, 'menu.json');
       const pages = await fetchPages();
-      await saveData(pages, `${inputs.dataDir}/pages.json`);
+      await saveData(pages, 'pages.json');
 
     }
     catch(err) {
