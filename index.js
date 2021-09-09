@@ -11,12 +11,25 @@ var dataDir;
 // Construct the data object for the menu
 const fetchMenu = async () => {
   const entries = await client.getEntries({
-    content_type: 'menuItem'
+    content_type: 'menuItem',
+    include: 1
   });
 
   let menu = [];
   for (item in entries.items) {
     let thisItem = entries.items[item];
+    let photo = {};
+    if(thisItem.fields.photo && thisItem.fields.photo[0].fields ) {
+      photo = {
+        "imageUrl": thisItem.fields.photo[0].fields.imageUrl,
+        "caption": thisItem.fields.photo[0].fields.caption,
+        "attribution": {
+          "text": thisItem.fields.photo[0].fields.attributionText,
+          "url": thisItem.fields.photo[0].fields.attributionUrl
+        }
+      };
+    }
+
     menu.push({
       "title": thisItem.fields.title,
       "description": thisItem.fields.description,
@@ -27,14 +40,8 @@ const fetchMenu = async () => {
         "vegan": thisItem.fields.vegan,
         "vegetarian": thisItem.fields.vegetarian,
         "glutenFree": thisItem.fields.glutenFree
-      }
-      //   "photo:": {
-      //     "imageUrl": STRING,
-      //     "attribution": {
-      //       "text": STRING,
-      //       "url": STRING
-      //     }
-      //   }
+      },
+      "photo": photo
     });
   };
   return menu;
