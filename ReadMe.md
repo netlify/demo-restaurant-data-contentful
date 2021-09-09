@@ -17,6 +17,13 @@ Running this command will include the code from this plugin's repo into your pro
 git submodule add https://github.com/netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
 ```
 
+As the plugin improves, you can pull those changes in to your code by periodically running this command:
+
+```bash
+git submodule update
+```
+
+
 ### Add the plugin to your project's `netlify.toml`
 
 ```toml
