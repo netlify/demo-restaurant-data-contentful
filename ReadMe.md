@@ -11,10 +11,17 @@ This plugin is to be used as a local plugin and not added to the official Netlif
 
 ### Include in your project as git submodule
 
+For SSH, use the following command:
+
 ```bash
 git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
 ```
 
+For HTTPS, use:
+
+```bash
+git submodule add https://github.com/netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
+```
 
 ### Add the plugin to your project's `netlify.toml`
 
@@ -28,6 +35,8 @@ git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify
     dataDir = "data"
 
 ```
+
+If you've configured your SSG to use a specific folder to use for data, replace the value of `dataDir` with the name of the folder you're using. Otherwise, create a folder called `data` at the root of your project, so the JSON file can be copied inside it.
 
 
 ### add the Contentful creds to your project as environment variable
