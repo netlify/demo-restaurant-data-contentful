@@ -11,13 +11,7 @@ This plugin is to be used as a local plugin and not added to the official Netlif
 
 ### Include in your project as git submodule
 
-For SSH, use the following command:
-
-```bash
-git submodule add git@github.com:netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
-```
-
-For HTTPS, use:
+Running this command will include the code from this plugin's repo into your project at the required location
 
 ```bash
 git submodule add https://github.com/netlify/demo-restaurant-data-contentful netlify/plugins/demo-restaurant-data-contentful
